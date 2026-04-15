@@ -1,0 +1,21 @@
+Strategy,Scenario ID,Intent,Fact Score,Tone Score,Quality Score,Overall Score
+A,1,Follow up after a sales meeting,100.0,100.0,100.0,100.0
+A,2,Request for proposal details from a vendor,100.0,100.0,95.3,98.4
+A,3,Apologize for a delayed shipment,100.0,100.0,100.0,100.0
+A,4,Announce an internal policy change,100.0,100.0,92.6,97.5
+A,5,Invite a speaker to a company conference,0.0,100.0,95.4,65.1
+A,6,Urgent request to reschedule a board meeting,100.0,100.0,97.0,99.0
+A,7,Welcome a new team member,100.0,100.0,100.0,100.0
+A,8,Decline a partnership proposal politely,100.0,100.0,97.4,99.1
+A,9,Notify customers of scheduled system maintenance,100.0,100.0,96.0,98.7
+A,10,Request feedback on a draft report from a colleague,75.0,100.0,100.0,91.7
+B,1,Follow up after a sales meeting,100.0,100.0,100.0,100.0
+B,2,Request for proposal details from a vendor,100.0,100.0,89.6,96.5
+B,3,Apologize for a delayed shipment,100.0,100.0,100.0,100.0
+B,4,Announce an internal policy change,100.0,100.0,93.9,98.0
+B,5,Invite a speaker to a company conference,0.0,100.0,94.3,64.8
+B,6,Urgent request to reschedule a board meeting,100.0,100.0,97.2,99.1
+B,7,Welcome a new team member,75.0,100.0,98.3,91.1
+B,8,Decline a partnership proposal politely,100.0,100.0,95.5,98.5
+B,9,Notify customers of scheduled system maintenance,100.0,100.0,97.5,99.2
+B,10,Request feedback on a draft report from a colleague,100.0,100.0,100.0,100.0

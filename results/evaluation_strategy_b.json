@@ -1,0 +1,547 @@
+{
+  "meta": {
+    "strategy": "B",
+    "provider": "groq",
+    "model": "llama-3.1-8b-instant",
+    "prompt_type": "Basic (single instruction)",
+    "timestamp": "2026-04-15T16:04:19.840421+00:00"
+  },
+  "metric_definitions": {
+    "fact_inclusion_score": {
+      "name": "Fact Inclusion Score",
+      "range": "0-100",
+      "focus": "Information Recall / Specificity",
+      "logic": "Key facts are split by semicolons. An LLM judge checks each fact against the email (PRESENT/MISSING). Score = (present / total) \u00d7 100."
+    },
+    "tone_alignment_score": {
+      "name": "Tone Alignment Score",
+      "range": "0-100",
+      "focus": "Tone Accuracy",
+      "logic": "An LLM judge rates tone match on a 1-5 Likert rubric. Normalized: ((likert - 1) / 4) \u00d7 100."
+    },
+    "professional_quality_score": {
+      "name": "Professional Quality Score",
+      "range": "0-100",
+      "focus": "Grammar, Structure, Conciseness",
+      "logic": "Composite of 3 equally weighted sub-scores: (A) Structural completeness heuristic, (B) Readability & word-count heuristic, (C) Grammar fluency via LLM-as-a-Judge."
+    }
+  },
+  "scenarios": [
+    {
+      "id": 1,
+      "intent": "Follow up after a sales meeting",
+      "tone": "Professional and friendly",
+      "key_facts": "Met on June 5 at the client's Chicago office; discussed the Enterprise Analytics platform; client requested a custom demo by June 20; primary contact is VP of Data, Priya Sharma",
+      "generated_email": "Subject: Follow-up on Enterprise Analytics Platform Demo\n\nDear Priya,\n\nI hope this email finds you well. I wanted to follow up on our meeting at your Chicago office on June 5, where we discussed the potential of our Enterprise Analytics platform for your organization. I truly appreciated the opportunity to speak with you and explore how our solution can address your data needs.\n\nAs we agreed, I am working on a custom demo that will showcase the specific features and functionalities that align with your requirements. I am on track to deliver the demo by June 20, as requested, and I am confident that it will provide you with a comprehensive understanding of how our platform can benefit your business.\n\nIf there's anything specific you would like me to focus on during the demo or if you have any questions in the meantime, please don't hesitate to reach out. I am always available to discuss further.\n\nThank you again for your time and consideration. I look forward to delivering the custom demo on June 20 and exploring how our Enterprise Analytics platform can support your organization's goals.\n\nBest regards,\n\n[Your Name]",
+      "reference_email": "Subject: Great Meeting on June 5 \u2014 Next Steps\n\nHi Priya,\n\nThank you for taking the time to meet with us at your Chicago office on June 5. It was a pleasure discussing how our Enterprise Analytics platform can support your team's goals.\n\nAs promised, we are preparing a custom demo tailored to your requirements and will have it ready for you by June 20. I will send over a calendar invite shortly so we can walk through it together.\n\nPlease don't hesitate to reach out if any questions come up in the meantime.\n\nBest regards,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Met on June 5 at the client's Chicago office",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the meeting location and date"
+            },
+            {
+              "fact": "discussed the Enterprise Analytics platform",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the topic of discussion"
+            },
+            {
+              "fact": "client requested a custom demo by June 20",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the agreed-upon delivery date"
+            },
+            {
+              "fact": "primary contact is VP of Data, Priya Sharma",
+              "status": "PRESENT",
+              "reason": "Priya is addressed as the recipient of the email, and her title is implied as VP of Data"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email is polite, courteous, and informative, striking a perfect balance between professionalism and friendliness, making it a perfect match for the requested tone."
+        },
+        "professional_quality": {
+          "score": 100.0,
+          "structure": 100.0,
+          "readability": 100.0,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 2,
+      "intent": "Request for proposal details from a vendor",
+      "tone": "Formal",
+      "key_facts": "Project is a new warehouse management system; budget cap is \\$500K; proposal deadline is August 1; vendor must include SLA terms and implementation timeline",
+      "generated_email": "Subject: Request for Proposal for Warehouse Management System\n\nDear [Vendor Representative's Name],\n\nI am writing to formally request a proposal for the development and implementation of a new warehouse management system for our organization. We are seeking a comprehensive solution that meets our business requirements and is within our allocated budget of $500,000.\n\nAs we progress with this project, it is essential that we understand the scope, timeline, and costs associated with your proposal. To ensure a successful implementation, we require the following details in your response:\n\n1. A detailed description of the proposed warehouse management system, including its features and functionalities.\n2. A comprehensive implementation plan, including a project timeline and milestones.\n3. A detailed breakdown of the costs associated with the implementation, including any applicable taxes or fees.\n4. Service Level Agreement (SLA) terms that outline the vendor's responsibilities, response times, and resolution procedures.\n5. Information on any necessary training or support for our staff to ensure a seamless transition.\n\nWe have set a deadline for proposals to be submitted by August 1, and we request that you also provide a clear indication of your company's ability to meet this deadline. We expect to select a vendor based on the merits of their proposal, and we will be conducting a thorough evaluation process to determine the best fit for our organization.\n\nIf you have any questions or require further clarification on this request, please do not hesitate to contact me directly. We look forward to receiving your proposal and exploring how your company can support our warehouse management system project.\n\nThank you for your time and consideration.\n\nBest regards,\n\n[Your Name]",
+      "reference_email": "Subject: Request for Proposal \u2014 Warehouse Management System\n\nDear Vendor Team,\n\nWe are currently evaluating solutions for a new warehouse management system and would like to invite you to submit a proposal. Our budget for this project is capped at \\$500,000.\n\nPlease ensure your proposal includes detailed SLA terms and a comprehensive implementation timeline. All submissions must be received no later than August 1.\n\nShould you require additional information about our requirements, please do not hesitate to contact us.\n\nSincerely,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Project is a new warehouse management system",
+              "status": "PRESENT",
+              "reason": "Explicitly mentioned in the email"
+            },
+            {
+              "fact": "budget cap is $500K",
+              "status": "PRESENT",
+              "reason": "Mentioned as allocated budget in the email"
+            },
+            {
+              "fact": "proposal deadline is August 1",
+              "status": "PRESENT",
+              "reason": "Clearly stated as the deadline for proposals"
+            },
+            {
+              "fact": "vendor must include SLA terms and implementation timeline",
+              "status": "PRESENT",
+              "reason": "Included as required details in the proposal"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email is written in a professional and polished tone, using formal language and a structured format, making it a perfect match for the requested formal tone."
+        },
+        "professional_quality": {
+          "score": 89.6,
+          "structure": 100.0,
+          "readability": 68.77723270440254,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 3,
+      "intent": "Apologize for a delayed shipment",
+      "tone": "Empathetic and apologetic",
+      "key_facts": "Order #88421 was due on May 28; delay caused by supplier shortage; new estimated delivery is June 8; offering a 15% discount on next order as compensation",
+      "generated_email": "Subject: Apology for Delayed Shipment - Order #88421\n\nDear [Customer's Name],\n\nI am writing to express my sincerest apologies for the delay in the shipment of your order, #88421, which was originally due to arrive on May 28. We understand the importance of timely deliveries and the inconvenience this delay has caused you.\n\nUnfortunately, the delay was a result of a supplier shortage, which is outside of our control. However, we are committed to making it right and ensuring that you receive your order as soon as possible. Our team has been working closely with our suppliers to resolve the issue, and we now estimate that your order will arrive on June 8.\n\nWe value your business and appreciate your patience and understanding in this matter. As a gesture of goodwill, we would like to offer you a 15% discount on your next order as a token of apology. Please feel free to use this discount code on your next purchase: DELAY15.\n\nOnce again, we apologize for the delay and any inconvenience it may have caused. If you have any questions or concerns, please do not hesitate to reach out to us. We are committed to providing you with the best possible service and appreciate your loyalty.\n\nThank you for your understanding.\n\nSincerely,\n\n[Your Name]",
+      "reference_email": "Subject: Sincere Apologies for the Delay on Order #88421\n\nDear Customer,\n\nI sincerely apologize for the delay in delivering your order #88421, which was originally due on May 28. Unfortunately, an unexpected supplier shortage impacted our fulfillment schedule.\n\nWe have expedited processing and your updated delivery estimate is June 8. To express our regret, we would like to offer you a 15% discount on your next order.\n\nWe truly value your patience and your business. Please reach out if there is anything else we can do.\n\nWith sincere apologies,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Order #88421 was due on May 28",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the original due date"
+            },
+            {
+              "fact": "delay caused by supplier shortage",
+              "status": "PRESENT",
+              "reason": "Stated in the email as the reason for the delay"
+            },
+            {
+              "fact": "new estimated delivery is June 8",
+              "status": "PRESENT",
+              "reason": "Provided in the email as the new estimated arrival date"
+            },
+            {
+              "fact": "offering a 15% discount on next order as compensation",
+              "status": "PRESENT",
+              "reason": "Included in the email with a discount code DELAY15"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email consistently conveys an empathetic and apologetic tone, acknowledging the customer's inconvenience, taking responsibility, and offering a gesture of goodwill."
+        },
+        "professional_quality": {
+          "score": 100.0,
+          "structure": 100.0,
+          "readability": 100.0,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 4,
+      "intent": "Announce an internal policy change",
+      "tone": "Informative and neutral",
+      "key_facts": "New remote-work policy effective July 1; employees may work from home up to 3 days per week; manager approval required for fully remote arrangements; updated policy document available on the HR portal",
+      "generated_email": "Subject: Update to Remote Work Policy\n\nDear All Employees,\n\nWe are writing to inform you of an update to our remote work policy, effective July 1. This change aims to provide greater flexibility and work-life balance for employees while maintaining the productivity and collaboration that are essential to our organization's success.\n\nUnder the new policy, employees will be eligible to work from home up to 3 days per week, with manager approval required for fully remote arrangements. This change is intended to allow employees to better balance their work and personal responsibilities, while also ensuring that our business needs are met.\n\nThe updated policy document, which outlines the details of this change, can be found on the HR portal. We encourage all employees to review the policy and familiarize themselves with the new guidelines.\n\nPlease note that manager approval will be required for all remote work arrangements, and employees are expected to maintain the same level of productivity and collaboration as when working on-site. If you have any questions or concerns about the new policy, please reach out to your manager or HR representative.\n\nWe appreciate your understanding and cooperation as we implement this change. If you have any feedback or suggestions, please don't hesitate to share them with us.\n\nThank you for your hard work and dedication to our organization.\n\nBest regards,\n\n[Your Name]\n[Your Title]\n[Company Name]",
+      "reference_email": "Subject: Updated Remote-Work Policy \u2014 Effective July 1\n\nDear Team,\n\nI am writing to inform you of an update to our remote-work policy, effective July 1. Under the new guidelines, employees may work from home up to three days per week.\n\nFully remote arrangements will require prior manager approval. The complete policy document is now available on the HR portal for your review.\n\nIf you have questions, please reach out to your manager or the HR team.\n\nThank you,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "New remote-work policy effective July 1",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as 'effective July 1'"
+            },
+            {
+              "fact": "employees may work from home up to 3 days per week",
+              "status": "PRESENT",
+              "reason": "Stated in the email as 'eligible to work from home up to 3 days per week'"
+            },
+            {
+              "fact": "manager approval required for fully remote arrangements",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as 'manager approval required for fully remote arrangements' and 'manager approval will be required for all remote work arrangements'"
+            },
+            {
+              "fact": "updated policy document available on the HR portal",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as 'can be found on the HR portal'"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email provides clear and objective information about the updated remote work policy, without expressing a personal opinion or emotion, maintaining a neutral tone throughout."
+        },
+        "professional_quality": {
+          "score": 93.9,
+          "structure": 100.0,
+          "readability": 81.55300822122575,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 5,
+      "intent": "Invite a speaker to a company conference",
+      "tone": "Warm and persuasive",
+      "key_facts": "Conference name: Innovate 2025; date is October 14\u201315 in Austin, TX; keynote slot is 45 minutes; honorarium of \\$5,000 plus travel covered",
+      "generated_email": "Subject: Invitation to Speak at Innovate 2025\n\nDear [Speaker's Name],\n\nI hope this email finds you well. My name is [Your Name], and I am reaching out from [Company Name] to extend an exclusive invitation for you to be a featured speaker at our upcoming conference, Innovate 2025. This event is scheduled to take place on October 14-15 in Austin, Texas, and we believe that your expertise would be a perfect fit for our audience.\n\nAt Innovate 2025, we bring together thought leaders, innovators, and industry experts to share their insights and experiences on the latest trends and breakthroughs in [industry/field]. Your keynote presentation would be a highlight of the conference, and we are confident that your unique perspective would inspire and educate our attendees.\n\nWe are offering a keynote slot of 45 minutes, during which you will have the opportunity to share your ideas, experiences, and vision with a diverse and engaged audience. In addition to the honorarium of $5,000, we will also cover your travel expenses to ensure that you can join us in Austin without any additional costs.\n\nOur conference is designed to foster meaningful connections, spark new ideas, and drive innovation. We believe that your presence would be a valuable addition to our lineup, and we are excited about the potential for a collaborative and inspiring experience.\n\nIf you are available and interested in joining us, please let us know by [Deadline for Response]. We will provide you with more details about the conference program, logistics, and other information to ensure a seamless experience.\n\nWe look forward to the possibility of having you share your insights with our audience and would be delighted to discuss this opportunity further.\n\nBest regards,\n\n[Your Name]\n[Your Title]\n[Company Name]\n[Contact Information]",
+      "reference_email": "Subject: Speaking Invitation \u2014 Innovate 2025\n\nDear Dr. [Last Name],\n\nWe would be honored to have you deliver a keynote address at Innovate 2025, our flagship conference taking place October 14\u201315 in Austin, TX.\n\nThe keynote slot is 45 minutes, and we are offering an honorarium of \\$5,000, with all travel expenses covered. Your insights would be an incredible addition to the event.\n\nWe truly hope you will consider this invitation and would be happy to discuss any details. Looking forward to hearing from you!\n\nWarmly,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 0.0,
+          "details": [
+            {
+              "fact": "Conference name: Innovate 2025",
+              "status": "MISSING",
+              "reason": "parse error"
+            },
+            {
+              "fact": "date is October 14\u201315 in Austin, TX",
+              "status": "MISSING",
+              "reason": "parse error"
+            },
+            {
+              "fact": "keynote slot is 45 minutes",
+              "status": "MISSING",
+              "reason": "parse error"
+            },
+            {
+              "fact": "honorarium of \\$5,000 plus travel covered",
+              "status": "MISSING",
+              "reason": "parse error"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email is warm and persuasive, using phrases such as 'exclusive invitation', 'we believe that your expertise would be a perfect fit', and 'we are excited about the potential for a collaborative and inspiring experience' to create a welcoming and enticing tone."
+        },
+        "professional_quality": {
+          "score": 94.3,
+          "structure": 100.0,
+          "readability": 83.01036437246967,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 6,
+      "intent": "Urgent request to reschedule a board meeting",
+      "tone": "Urgent and respectful",
+      "key_facts": "Original date was July 22; CEO is unavailable due to emergency travel; proposed new date is July 29; agenda remains unchanged",
+      "generated_email": "Subject: Urgent: Request to Reschedule Board Meeting\n\nDear Board Members,\n\nI am writing to request that we reschedule the upcoming board meeting, originally set for July 22. Unfortunately, due to unforeseen circumstances, our CEO will be unavailable on this date as they need to attend to an urgent matter related to emergency travel. This unexpected situation has arisen at short notice, and we require your prompt attention to this matter.\n\nAfter consulting with our CEO, we propose rescheduling the meeting to July 29, with the agenda remaining unchanged. We understand that this is a slight adjustment, but it is essential that we convene as soon as possible to address the critical matters at hand.\n\nI kindly request that you confirm your availability for the new date at your earliest convenience. If you have any scheduling conflicts or concerns, please do not hesitate to reach out to me directly.\n\nThank you for your understanding and cooperation in this matter. Your prompt response will enable us to finalize the arrangements and ensure a smooth transition.\n\nBest regards,\n\n[Your Name]\n[Your Title]\n[Company Name]",
+      "reference_email": "Subject: URGENT \u2014 Board Meeting Rescheduled to July 29\n\nDear Board Members,\n\nI am writing to inform you that the board meeting originally scheduled for July 22 must be rescheduled. Due to emergency travel obligations, our CEO will be unavailable on that date.\n\nWe propose moving the meeting to July 29. The agenda will remain unchanged. Please confirm your availability at your earliest convenience so we can finalize logistics.\n\nThank you for your understanding and flexibility.\n\nRegards,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Original date was July 22",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the original date"
+            },
+            {
+              "fact": "CEO is unavailable due to emergency travel",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the reason for rescheduling"
+            },
+            {
+              "fact": "proposed new date is July 29",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as the proposed new date"
+            },
+            {
+              "fact": "agenda remains unchanged",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email as remaining the same"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email effectively conveys a sense of urgency while maintaining a respectful tone through polite language and considerate requests."
+        },
+        "professional_quality": {
+          "score": 97.2,
+          "structure": 100.0,
+          "readability": 91.4859310344828,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 7,
+      "intent": "Welcome a new team member",
+      "tone": "Casual and enthusiastic",
+      "key_facts": "New hire is Alex Kim, Senior Software Engineer; starting on Monday, August 12; will be on the Platform Infrastructure team; buddy/mentor is Jessica Tran",
+      "generated_email": "Subject: Welcome to the Team, Alex!\n\nDear Alex,\n\nWe're super excited to have you joining our amazing team! As you prepare to start on Monday, August 12, we wanted to take a moment to formally welcome you to the Platform Infrastructure team.\n\nWe're thrilled to have your skills and expertise on board, and we're confident that you'll hit the ground running. Your new buddy and mentor, Jessica Tran, will be in touch with you soon to get you settled and answer any questions you may have.\n\nIf you have any questions or need any assistance before your start date, please don't hesitate to reach out to us. We're always here to help.\n\nOnce again, welcome to the team, Alex! We're looking forward to seeing the amazing things you'll accomplish.\n\nBest regards,\n[Your Name]",
+      "reference_email": "Subject: Welcome to the Team, Alex!\n\nHey everyone,\n\nI'm excited to let you know that Alex Kim will be joining us as a Senior Software Engineer on the Platform Infrastructure team starting Monday, August 12!\n\nJessica Tran will be Alex's buddy and mentor, so please help make the first few weeks awesome. Feel free to swing by and say hello.\n\nLet's give Alex a warm welcome!\n\nCheers,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 75.0,
+          "details": [
+            {
+              "fact": "New hire is Alex Kim, Senior Software Engineer",
+              "status": "MISSING",
+              "reason": "Job title not mentioned"
+            },
+            {
+              "fact": "starting on Monday, August 12",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email"
+            },
+            {
+              "fact": "will be on the Platform Infrastructure team",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email"
+            },
+            {
+              "fact": "buddy/mentor is Jessica Tran",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email uses enthusiastic language, such as 'super excited', 'thrilled', and 'amazing', to create a casual and welcoming tone that matches the requested tone."
+        },
+        "professional_quality": {
+          "score": 98.3,
+          "structure": 100.0,
+          "readability": 94.78657917760276,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 8,
+      "intent": "Decline a partnership proposal politely",
+      "tone": "Polite and diplomatic",
+      "key_facts": "Proposal was for co-branded marketing campaign; does not align with current brand strategy; open to revisiting in Q1 next year; appreciate the detailed proposal they sent",
+      "generated_email": "Subject: Re: Partnership Proposal for Co-Branded Marketing Campaign\n\nDear [Partner's Name],\n\nI hope this email finds you well. I wanted to personally reach out to you regarding the partnership proposal you sent over for our company to collaborate on a co-branded marketing campaign. I appreciate the time and effort you invested in crafting a detailed proposal, and we are grateful for the opportunity to consider this partnership.\n\nAfter careful review and evaluation, we have decided that this proposal does not align with our current brand strategy and marketing objectives. We appreciate your understanding in this matter and are confident that this decision will allow us to focus on initiatives that better support our business goals.\n\nAlthough we will not be moving forward with this proposal at this time, we would like to remain open to revisiting the idea in the future. Specifically, we would be interested in discussing potential opportunities in the first quarter of next year, when our marketing strategy is set to evolve. We believe that your company's values and goals align well with our own, and we would be happy to explore ways we can work together in the future.\n\nThank you again for reaching out to us and for the thoughtful proposal you submitted. We appreciate your understanding and look forward to the possibility of collaborating in the future.\n\nBest regards,\n\n[Your Name]\n[Your Title]\n[Your Company]",
+      "reference_email": "Subject: Re: Co-Branded Marketing Campaign Proposal\n\nDear [Name],\n\nThank you for taking the time to put together such a detailed proposal for a co-branded marketing campaign. We genuinely appreciate the thought and effort behind it.\n\nAfter careful review, we have determined that the initiative does not align with our current brand strategy. That said, we would be very open to revisiting this conversation in Q1 of next year as our priorities evolve.\n\nWe value the relationship and look forward to potential collaboration in the future.\n\nKind regards,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Proposal was for co-branded marketing campaign",
+              "status": "PRESENT",
+              "reason": "Mentioned in email subject and body"
+            },
+            {
+              "fact": "does not align with current brand strategy",
+              "status": "PRESENT",
+              "reason": "Stated in email as reason for not moving forward"
+            },
+            {
+              "fact": "open to revisiting in Q1 next year",
+              "status": "PRESENT",
+              "reason": "Explicitly mentioned in email as potential future opportunity"
+            },
+            {
+              "fact": "appreciate the detailed proposal they sent",
+              "status": "PRESENT",
+              "reason": "Expressed in email as gratitude for partner's effort"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email is courteous, considerate, and tactfully declines the proposal while leaving the door open for future collaboration, perfectly capturing a polite and diplomatic tone."
+        },
+        "professional_quality": {
+          "score": 95.5,
+          "structure": 100.0,
+          "readability": 86.46972686506325,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 9,
+      "intent": "Notify customers of scheduled system maintenance",
+      "tone": "Clear and reassuring",
+      "key_facts": "Maintenance window: Saturday, September 6, 2:00\u20136:00 AM EST; services affected: payment processing and order tracking; expected downtime is up to 2 hours; no action required from customers",
+      "generated_email": "Subject: Scheduled System Maintenance Notification\n\nDear valued customers,\n\nWe are writing to inform you of a scheduled system maintenance that will take place on Saturday, September 6, 2024, between 2:00 AM and 6:00 AM EST. During this maintenance window, our payment processing and order tracking services will be unavailable.\n\nPlease be assured that we have taken all necessary precautions to minimize any disruption to our services. The expected downtime is estimated to be up to 2 hours, and we anticipate that all impacted services will be fully operational by 6:00 AM EST.\n\nNo action is required from your end, and you can continue to use our services as usual. We will notify you as soon as the maintenance is complete and services are restored.\n\nWe appreciate your understanding and cooperation during this scheduled maintenance. If you have any questions or concerns, please do not hesitate to contact our customer support team.\n\nThank you for your patience, and we look forward to continuing to serve you.\n\nBest regards,\n[Your Name]\n[Your Company]",
+      "reference_email": "Subject: Scheduled Maintenance \u2014 September 6\n\nDear Valued Customer,\n\nWe want to let you know about a scheduled maintenance window on Saturday, September 6, from 2:00 AM to 6:00 AM EST. During this period, payment processing and order tracking may be temporarily unavailable for up to 2 hours.\n\nNo action is required on your part. Our team will be working to complete the maintenance as quickly as possible to minimize any disruption.\n\nThank you for your understanding.\n\nBest,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Maintenance window: Saturday, September 6, 2:00\u20136:00 AM EST",
+              "status": "PRESENT",
+              "reason": "Matching details in email"
+            },
+            {
+              "fact": "services affected: payment processing and order tracking",
+              "status": "PRESENT",
+              "reason": "Services mentioned in email"
+            },
+            {
+              "fact": "expected downtime is up to 2 hours",
+              "status": "PRESENT",
+              "reason": "Downtime duration mentioned in email"
+            },
+            {
+              "fact": "no action required from customers",
+              "status": "PRESENT",
+              "reason": "Explicitly stated in email"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email is direct, informative, and provides clear details about the maintenance, while also reassuring customers that necessary precautions have been taken and that services will be restored promptly."
+        },
+        "professional_quality": {
+          "score": 97.5,
+          "structure": 100.0,
+          "readability": 92.53585542168679,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    },
+    {
+      "id": 10,
+      "intent": "Request feedback on a draft report from a colleague",
+      "tone": "Collegial and concise",
+      "key_facts": "Report title: 2024 Sustainability Impact Assessment; deadline for feedback is Friday, June 14; focus areas: data accuracy in Section 3 and clarity of executive summary; report is attached as a PDF",
+      "generated_email": "Subject: Feedback Request: 2024 Sustainability Impact Assessment\n\nDear [Colleague's Name],\n\nI hope this email finds you well. I am nearing completion of the 2024 Sustainability Impact Assessment report and would greatly appreciate your feedback before its finalization. The attached report is a draft, and I have highlighted two specific areas where your expertise would be particularly valuable.\n\nIn particular, I would appreciate your review of Section 3, focusing on the accuracy of the data presented. Additionally, I would like to receive your input on the clarity and effectiveness of the executive summary.\n\nTo ensure we meet our deadline, please provide your feedback by Friday, June 14. Your input will be instrumental in refining the report, and I am confident that your insights will enhance the overall quality of the document.\n\nThe attached PDF includes the draft report. If you have any questions or concerns, please do not hesitate to reach out to me.\n\nThank you for your time and consideration.\n\nBest regards,\n\n[Your Name]",
+      "reference_email": "Subject: Feedback Request \u2014 2024 Sustainability Impact Assessment\n\nHi [Name],\n\nI have attached the draft of our 2024 Sustainability Impact Assessment and would greatly appreciate your feedback. In particular, I'd love your thoughts on the data accuracy in Section 3 and the clarity of the executive summary.\n\nCould you share your comments by Friday, June 14? The report is attached as a PDF for your convenience.\n\nThanks in advance!\n\nBest,\n[Your Name]",
+      "metrics": {
+        "fact_inclusion": {
+          "score": 100.0,
+          "details": [
+            {
+              "fact": "Report title: 2024 Sustainability Impact Assessment",
+              "status": "PRESENT",
+              "reason": "Mentioned in subject and email body"
+            },
+            {
+              "fact": "deadline for feedback is Friday, June 14",
+              "status": "PRESENT",
+              "reason": "Clearly stated in the email body"
+            },
+            {
+              "fact": "focus areas: data accuracy in Section 3 and clarity of executive summary",
+              "status": "PRESENT",
+              "reason": "Both areas mentioned in the email body"
+            },
+            {
+              "fact": "report is attached as a PDF",
+              "status": "PRESENT",
+              "reason": "Mentioned in the email body as 'The attached PDF includes the draft report'"
+            }
+          ]
+        },
+        "tone_alignment": {
+          "score": 100.0,
+          "likert": 5,
+          "justification": "The email is polite, direct, and to the point, effectively conveying the request for feedback while showing appreciation for the colleague's expertise and time."
+        },
+        "professional_quality": {
+          "score": 100.0,
+          "structure": 100.0,
+          "readability": 100.0,
+          "grammar": 100.0,
+          "grammar_details": {
+            "score": 100.0,
+            "likert": 5,
+            "issues": "none"
+          }
+        }
+      }
+    }
+  ],
+  "averages": {
+    "fact_inclusion_avg": 87.5,
+    "tone_alignment_avg": 100.0,
+    "professional_quality_avg": 96.6,
+    "overall_avg": 94.7
+  }
+}

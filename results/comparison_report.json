@@ -1,0 +1,102 @@
+{
+  "strategy_a": {
+    "description": {
+      "strategy": "A",
+      "provider": "groq",
+      "model": "llama-3.3-70b-versatile",
+      "prompt_type": "Advanced (Role-Play + Few-Shot + CoT)",
+      "timestamp": "2026-04-15T16:01:05.884351+00:00"
+    },
+    "averages": {
+      "fact_inclusion_avg": 87.5,
+      "tone_alignment_avg": 100.0,
+      "professional_quality_avg": 97.4,
+      "overall_avg": 95.0
+    }
+  },
+  "strategy_b": {
+    "description": {
+      "strategy": "B",
+      "provider": "groq",
+      "model": "llama-3.1-8b-instant",
+      "prompt_type": "Basic (single instruction)",
+      "timestamp": "2026-04-15T16:04:19.840421+00:00"
+    },
+    "averages": {
+      "fact_inclusion_avg": 87.5,
+      "tone_alignment_avg": 100.0,
+      "professional_quality_avg": 96.6,
+      "overall_avg": 94.7
+    }
+  },
+  "per_scenario_delta": [
+    {
+      "id": 1,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": 0.0
+    },
+    {
+      "id": 2,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": 5.7
+    },
+    {
+      "id": 3,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": 0.0
+    },
+    {
+      "id": 4,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": -1.3
+    },
+    {
+      "id": 5,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": 1.1
+    },
+    {
+      "id": 6,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": -0.2
+    },
+    {
+      "id": 7,
+      "fact_delta": 25.0,
+      "tone_delta": 0.0,
+      "quality_delta": 1.7
+    },
+    {
+      "id": 8,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": 1.9
+    },
+    {
+      "id": 9,
+      "fact_delta": 0.0,
+      "tone_delta": 0.0,
+      "quality_delta": -1.5
+    },
+    {
+      "id": 10,
+      "fact_delta": -25.0,
+      "tone_delta": 0.0,
+      "quality_delta": 0.0
+    }
+  ],
+  "analysis": {
+    "winner": "Strategy A",
+    "winner_overall_avg": 95.0,
+    "loser_overall_avg": 94.7,
+    "biggest_failure_mode_of_loser": "Fact Inclusion",
+    "loser_worst_score": 87.5,
+    "recommendation": "Strategy A is recommended for production. It achieved an overall average of 95.0 vs 94.7. The lower-performing strategy struggled most with Fact Inclusion (avg 87.5). The advanced prompting (Role-Play + Few-Shot + CoT) significantly improves fact recall and tone accuracy."
+  }
+}
